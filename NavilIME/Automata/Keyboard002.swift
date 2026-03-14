@@ -142,6 +142,7 @@ class Keyboard002 : Keyboard {
             "qt":Jongsung.Pieupsios, "Qt":Jongsung.Pieupsios, "QT":Jongsung.Pieupsios,
             "t":Jongsung.Sios, // 쌍자음 있으므로 대문자 맵핑 안함
             "T":Jongsung.Ssangsios,
+            "tt":Jongsung.Ssangsios,
             "d":Jongsung.Ieung, "D":Jongsung.Ieung,
             "w":Jongsung.Cieuc, "W":Jongsung.Cieuc,
             "c":Jongsung.Chieuch, "C":Jongsung.Chieuch,
