@@ -14,23 +14,6 @@ open class NavilIMEInputController: IMKInputController {
     
     var hangul:Hangul!
     
-    // 심볼 치환 버퍼
-    var symbol_buffer: String = ""
-    
-    // 심볼 치환 테이블
-    let symbol_pairs: [String: String] = [
-        "->": "→",
-        "<-": "←",
-        "=>": "⇒",
-        "<=": "⇐",
-        "<_": "≤",
-        ">_": "≥",
-        "<<": "《",
-        ">>": "》",
-        "~=": "≈",
-        "+-": "±"
-    ]
-    
     override open func activateServer(_ sender: Any!) {
         super.activateServer(sender)
         
@@ -93,7 +76,6 @@ open class NavilIMEInputController: IMKInputController {
         Hotfix.shared.add(keycode)
         let is_matched = Hotfix.shared.check()
         if is_matched == true {
-            symbol_buffer = ""
             return false
         }
         
@@ -101,7 +83,6 @@ open class NavilIMEInputController: IMKInputController {
             || flag.contains(.option)
             || flag.contains(.control) {
             PrintLog.shared.Log(log: "Modikey - \(keycode) with \(flag.rawValue)")
-            symbol_buffer = ""
             return false
         }
         
@@ -112,7 +93,6 @@ open class NavilIMEInputController: IMKInputController {
             
             self.hangul.Flush()
             self.update_display(client: client)
-            symbol_buffer = ""
             
             return false
         }
@@ -120,12 +100,6 @@ open class NavilIMEInputController: IMKInputController {
         let backspace = 0x33    // MacOS defined
         if keycode == backspace {
             PrintLog.shared.Log(log: "Backspace")
-            
-            // 심볼 버퍼가 있으면 버퍼만 지움
-            if !symbol_buffer.isEmpty {
-                symbol_buffer.removeLast()
-                return false
-            }
             
             let remain = self.hangul.Backspace()
             if remain == true {
@@ -139,7 +113,6 @@ open class NavilIMEInputController: IMKInputController {
             
             self.hangul.Flush()
             self.update_display(client: client)
-            symbol_buffer = ""
             
             return false
         }
@@ -161,36 +134,8 @@ open class NavilIMEInputController: IMKInputController {
             if let etc = hangul.Additional(ascii: String(ascii)) {
                 extra = etc
             }
-            
-            // 심볼 버퍼에 추가
-            symbol_buffer += extra
-            PrintLog.shared.Log(log: "Symbol buffer: \(symbol_buffer)")
-            
-            // 치환 테이블에서 완전 매칭 검색
-            if let symbol = symbol_pairs[symbol_buffer] {
-                // 버퍼의 앞 글자들은 이미 화면에 출력됐으므로 삭제 후 심볼 입력
-                let del_count = symbol_buffer.count - 1
-                symbol_buffer = ""
-                // 앞 글자들 지우기
-                guard let disp = client as? IMKTextInput else { return true }
-                for _ in 0..<del_count {
-                    disp.insertText("\u{08}", replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
-                }
-                disp.insertText(symbol, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
-                PrintLog.shared.Log(log: "Symbol replaced: \(symbol)")
-                return true
-            }
-            
-            // 어떤 패턴의 접두사도 아니면 버퍼 초기화
-            let is_prefix = symbol_pairs.keys.contains { $0.hasPrefix(symbol_buffer) }
-            if !is_prefix {
-                symbol_buffer = ""
-            }
-            
             self.update_display(client: client, backspace: false, additional: extra)
         } else {
-            // 한글 입력시 심볼 버퍼 초기화
-            symbol_buffer = ""
             self.update_display(client: client)
         }
         return true
@@ -232,7 +177,6 @@ open class NavilIMEInputController: IMKInputController {
         PrintLog.shared.Log(log: "Commit Composition")
         self.hangul.Flush()
         self.update_display(client: sender)
-        symbol_buffer = ""
     }
     
     override open func recognizedEvents(_ sender: Any!) -> Int {
