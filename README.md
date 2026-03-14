@@ -38,6 +38,6 @@ xcodebuild -project NavilIME.xcodeproj \
 		   
 ```
 
-# 감사
+## 감사
 * 원작자이신 나빌레라 님께 감사의 말씀을 올립니다.
 * https://github.com/navilera/NavilIMEforMac
