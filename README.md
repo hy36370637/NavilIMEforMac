@@ -11,7 +11,7 @@
 
 
 ## 개선(나빌)
-* emacs 사용때 시스템 입력소스(navilIME) 영문 자동전환: 가장 큰 불편
+* emacs 사용때 시스템 입력소스(navilIME) 영문 자동전환: 개선 주요목적
 * ㅆ 받침  추가 : "tt":Jongsung.Ssangsios 한 줄 추가
 * 심볼 자동 치환: -> → → 등 10개 패턴 추가(기능 불안)
 * emacs-plus 30.2, macOS 15.7.4
