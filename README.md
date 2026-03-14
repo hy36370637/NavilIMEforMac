@@ -14,7 +14,6 @@
 ## 개선(나빌)
 * emacs 활성 → macOS 영문 전환: 개선 주요목적(hammerspoon 제거)
 * ㅆ 받침  추가 : "tt":Jongsung.Ssangsios 한 줄 추가
-* 심볼 자동 치환: -> → → 등 10개 패턴 추가(기능 불안)
 
 
 ## 도움
