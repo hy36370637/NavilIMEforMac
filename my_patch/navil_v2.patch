@@ -1,0 +1,22 @@
+--- NavilIME/NavilIMEInputController.swift.orig	2026-03-15 09:45:43
++++ NavilIME/NavilIMEInputController.swift	2026-03-15 09:52:09
+@@ -20,6 +20,19 @@
+         PrintLog.shared.Log(log: "Server Activated")
+         self.hangul = Hangul()
+         self.hangul.Start(type: HangulMenu.shared.selected_keyboard)
++        
++        // 특정 앱 활성화 시 영문 모드 고정
++        let eng_only_apps = ["org.gnu.Emacs"]
++        if let client = sender as? IMKTextInput,
++           let bundleID = client.bundleIdentifier() {
++            PrintLog.shared.Log(log: "App activated: \(bundleID)")
++            if eng_only_apps.contains(bundleID) {
++                HangulMenu.shared.self_eng_mode = true
++                PrintLog.shared.Log(log: "Forced English mode for: \(bundleID)")
++            } else {
++                HangulMenu.shared.self_eng_mode = false
++            }
++        }
+     }
+     
+     override open func deactivateServer(_ sender: Any!) {

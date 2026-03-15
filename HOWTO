@@ -1,0 +1,28 @@
+cd ~/Build/NavilIMEforMac
+
+# 1. 새 소스 받기
+git pull
+
+# 2. ㅆ받침
+sed -i '' 's/"T":Jongsung.Ssangsios,/"T":Jongsung.Ssangsios,\n            "tt":Jongsung.Ssangsios,/' NavilIME/Automata/Keyboard002.swift
+
+
+# 3. 패치 적용
+patch NavilIME/NavilIMEInputController.swift < ~/my_patch/navil_v2.patch
+
+# 4. 빌드 & 설치
+rm -rf ~/Library/Developer/Xcode/DerivedData/NavilIME-*
+xcodebuild -project NavilIME.xcodeproj \
+           -scheme NavilIME \
+           -configuration Release \
+           CODE_SIGN_IDENTITY="" \
+           CODE_SIGNING_REQUIRED=NO \
+           SWIFT_VERSION=5 \
+           build 2>&1 | tail -3
+
+sudo pkill -f NavilIME
+cp -r ~/Library/Developer/Xcode/DerivedData/NavilIME-*/Build/Products/Release/NavilIME.app \
+      ~/Library/Input\ Methods/
+xattr -cr ~/Library/Input\ Methods/NavilIME.app
+codesign --force --deep --sign - ~/Library/Input\ Methods/NavilIME.app
+open ~/Library/Input\ Methods/NavilIME.app
