@@ -14,6 +14,7 @@
 ## Patch
 * for emacs: emacs 활성 → macOS system 영문키보드 자동 전환
 * ㅆ 받침: "tt":Jongsung.Ssangsios 한 줄 추가
+* ARM,두벌식만 지원: 경량화
 
 
 ## AI 도움
@@ -33,6 +34,8 @@ xcodebuild -project NavilIME.xcodeproj \
            CODE_SIGN_IDENTITY="" \
            CODE_SIGNING_REQUIRED=NO \
            SWIFT_VERSION=5 \
+           ARCHS=arm64 \
+           ONLY_ACTIVE_ARCH=NO \
            build 2>&1 | tail -3
 		   
 ```

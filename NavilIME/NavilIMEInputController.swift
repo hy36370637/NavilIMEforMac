@@ -50,7 +50,7 @@ open class NavilIMEInputController: IMKInputController {
         if OptHandler.shared.Is_han_eng_changed(keycode: event.keyCode, modi: event.modifierFlags) {
             self.hangul.ToggleSuspend()
             self.commitComposition(sender)
-            return true
+                return true
         }
         
         switch event.type {
