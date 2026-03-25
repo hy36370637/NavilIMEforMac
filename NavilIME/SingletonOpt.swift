@@ -22,9 +22,13 @@ class OptHandler {
     var hotkeys: [NSButton] = []
     let hotkeys_db_key = "han_eng_hotkey_opt"
     var hotkey_radio_tag = 0
-    
-    private init() { 
+    // Emacs 영문 고정 옵션
+    var emacs_eng_checkbox: NSButton?
+    let emacs_eng_db_key = "emacs_eng_mode"
+    var emacs_eng_mode: Bool = false
+    private init() {
         hotkey_radio_tag = UserDefaults.standard.integer(forKey: hotkeys_db_key)
+        emacs_eng_mode = UserDefaults.standard.bool(forKey: emacs_eng_db_key)
     }
     
     func Open_opt_window(_ sender:Any?) {
@@ -48,6 +52,8 @@ class OptHandler {
             }
         }
         
+        // Emacs 영문 고정 체크박스 상태 반영
+        emacs_eng_checkbox?.state = emacs_eng_mode ? .on : .off
         if let w = NSApplication.shared.windows.first {
             w.makeKeyAndOrderFront(sender)
         }
@@ -61,6 +67,11 @@ class OptHandler {
         }
     }
     
+    func Emacs_eng_mode(enabled: Bool) {
+        emacs_eng_mode = enabled
+        UserDefaults.standard.set(enabled, forKey: emacs_eng_db_key)
+        UserDefaults.standard.synchronize()
+    }
     func HanEng_hotkey(sel:Int) {
         hotkey_radio_tag = sel
         UserDefaults.standard.set(hotkey_radio_tag, forKey: hotkeys_db_key)

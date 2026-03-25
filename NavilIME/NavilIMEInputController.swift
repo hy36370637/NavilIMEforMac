@@ -21,16 +21,17 @@ open class NavilIMEInputController: IMKInputController {
         self.hangul = Hangul()
         self.hangul.Start(type: HangulMenu.shared.selected_keyboard)
         
-        // 특정 앱 활성화 시 영문 모드 고정
-        let eng_only_apps = ["org.gnu.Emacs"]
-        if let client = sender as? IMKTextInput,
-           let bundleID = client.bundleIdentifier() {
-            PrintLog.shared.Log(log: "App activated: \(bundleID)")
-            if eng_only_apps.contains(bundleID) {
-                HangulMenu.shared.self_eng_mode = true
-                PrintLog.shared.Log(log: "Forced English mode for: \(bundleID)")
-            } else {
-                HangulMenu.shared.self_eng_mode = false
+        // Emacs 영문 고정 옵션이 켜져 있을 때만 적용
+        if OptHandler.shared.emacs_eng_mode {
+            if let client = sender as? IMKTextInput,
+               let bundleID = client.bundleIdentifier() {
+                PrintLog.shared.Log(log: "App activated: \(bundleID)")
+                if bundleID == "org.gnu.Emacs" {
+                    HangulMenu.shared.self_eng_mode = true
+                    PrintLog.shared.Log(log: "Forced English mode for: \(bundleID)")
+                } else {
+                    HangulMenu.shared.self_eng_mode = false
+                }
             }
         }
     }
