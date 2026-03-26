@@ -36,18 +36,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WT-xm-G8f">
-                        <rect key="frame" x="13" y="212" width="448" height="298"/>
+                        <rect key="frame" x="13" y="290" width="448" height="220"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <clipView key="contentView" drawsBackground="NO" id="JVZ-Ji-tNK">
-                            <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
+                            <rect key="frame" x="0.0" y="0.0" width="448" height="220"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="Qen-Ja-R88">
-                                    <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="448" height="220"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="448" height="298"/>
+                                    <size key="minSize" width="448" height="220"/>
                                     <size key="maxSize" width="448" height="10000000"/>
                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 </textView>
@@ -58,19 +58,19 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ch7-5n-dLA">
-                            <rect key="frame" x="432" y="0.0" width="16" height="298"/>
+                            <rect key="frame" x="432" y="0.0" width="16" height="220"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
                     <box fixedFrame="YES" title="두벌식 옵션" translatesAutoresizingMaskIntoConstraints="NO" id="M3X-8K-Wj8">
-                        <rect key="frame" x="12" y="16" width="450" height="77"/>
+                        <rect key="frame" x="12" y="52" width="450" height="93"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="jbE-WO-ihz">
-                            <rect key="frame" x="4" y="5" width="442" height="57"/>
+                            <rect key="frame" x="4" y="5" width="442" height="73"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FsM-p3-Aao">
-                                    <rect key="frame" x="18" y="33" width="404" height="18"/>
+                                    <rect key="frame" x="18" y="49" width="404" height="18"/>
                                     <buttonCell key="cell" type="check" title="ㄷㄷㄷ 입력켜기" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9n4-8Z-Yzr">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -80,7 +80,7 @@
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DnV-SG-qn8">
-                                    <rect key="frame" x="18" y="3" width="210" height="18"/>
+                                    <rect key="frame" x="18" y="10" width="210" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Force English mode for Emacs" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="kk2-5C-Oji">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -99,7 +99,7 @@
                         </view>
                     </box>
                     <box fixedFrame="YES" title="한영전환" translatesAutoresizingMaskIntoConstraints="NO" id="35K-Bs-OJo" userLabel="한영전환">
-                        <rect key="frame" x="12" y="97" width="452" height="102"/>
+                        <rect key="frame" x="12" y="166" width="452" height="102"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="UV1-p4-dY8">
                             <rect key="frame" x="4" y="5" width="444" height="82"/>
@@ -160,6 +160,24 @@
                             </constraints>
                         </view>
                     </box>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sag-kA-f57">
+                        <rect key="frame" x="53" y="254" width="367" height="219"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" id="deN-cP-gOC">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <string key="title">  
+    NavilIME Patch Version
+
+     패치내용
+
+     - ㅅㅅ 연속 입력 받침 ㅆ
+
+     - emacs 사용때 영어(en) 고정(옵션선택)
+</string>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <point key="canvasLocation" x="203" y="478.5"/>
