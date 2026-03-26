@@ -84,6 +84,17 @@ open class NavilIMEInputController: IMKInputController {
             || flag.contains(.option)
             || flag.contains(.control) {
             PrintLog.shared.Log(log: "Modikey - \(keycode) with \(flag.rawValue)")
+            // Emacs에서 수식키 조합 시 자동 영문 전환
+            if OptHandler.shared.emacs_eng_mode,
+               let client = client as? IMKTextInput,
+               let bundleID = client.bundleIdentifier(),
+               bundleID == "org.gnu.Emacs" {
+                if HangulMenu.shared.self_eng_mode == false {
+                    HangulMenu.shared.self_eng_mode = true
+                    self.hangul.Flush()
+                    PrintLog.shared.Log(log: "Auto switched to English for Emacs shortcut")
+                }
+            }
             return false
         }
         

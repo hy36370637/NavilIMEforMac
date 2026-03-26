@@ -1,16 +1,19 @@
 NavilIME patch
 
 v1.0
-ㅅㅅ -> ㅆ 기능
+ - ㅅㅅ -> ㅆ 기능
 
 v2.0
-특수기호 일부 -> → 변환 기능
+ - 특수기호 일부 -> → 변환 기능
 
 v3.0 
-emacs 활성화 때 영문입력기 고정
+ - emacs 활성화 때 영문입력기 고정
 
 han2v1
-두벌식 전용-세벌식 제거
+ - 두벌식 전용-세벌식 제거
 
-ARM ver1.0
-두벌식 + arm
+ARM ver1.1
+ - emacs 활성때 영문입력기 고정(옵션화)
+
+ARM ver1.2
+ - emacs 사용때 Control, Command, Meta와 다른키 조합때 -> 영문 전환
