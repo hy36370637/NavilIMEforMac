@@ -14,6 +14,3 @@ han2v1
 
 ARM ver1.1
  - emacs 활성때 영문입력기 고정(옵션화)
-
-ARM ver1.2
- - emacs 사용때 Control, Command, Meta와 다른키 조합때 -> 영문 전환
