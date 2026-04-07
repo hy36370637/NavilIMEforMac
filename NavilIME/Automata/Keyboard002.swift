@@ -124,6 +124,7 @@ class Keyboard002 : Keyboard {
         self.jongsung_layout = [
             "r":Jongsung.Kiyeok,    // 쌍자음 있으므로 대문자 맵핑 안함
             "R":Jongsung.Ssangkiyeok,
+            "rr":Jongsung.Ssangkiyeok,
             "rt":Jongsung.Kiyeoksios, "Rt":Jongsung.Kiyeoksios, "RT":Jongsung.Kiyeoksios,
             "s":Jongsung.Nieun, "S":Jongsung.Nieun,
             "sw":Jongsung.Nieuncieuc, "Sw":Jongsung.Nieuncieuc, "SW":Jongsung.Nieuncieuc,
