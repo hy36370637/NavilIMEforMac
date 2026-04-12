@@ -14,3 +14,11 @@ han2v1
 
 ARM ver1.1
  - emacs 활성때 영문입력기 고정(옵션화)
+
+ARM ver1.4
+ - emacs 활성때 영문입력기 고정(옵션화) 일 경우
+   Alfred: Forced Keyboard에서 NavilIME -> en전환
+   즉, ABC 선택하지 않고 NavilIME 사용가능
+
+
+

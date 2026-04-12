@@ -15,27 +15,29 @@ open class NavilIMEInputController: IMKInputController {
     var hangul:Hangul!
     
     override open func activateServer(_ sender: Any!) {
-        super.activateServer(sender)
-        
-        PrintLog.shared.Log(log: "Server Activated")
-        self.hangul = Hangul()
-        self.hangul.Start(type: HangulMenu.shared.selected_keyboard)
-        
-        // Emacs 영문 고정 옵션이 켜져 있을 때만 적용
-        if OptHandler.shared.emacs_eng_mode {
-            if let client = sender as? IMKTextInput,
-               let bundleID = client.bundleIdentifier() {
-                PrintLog.shared.Log(log: "App activated: \(bundleID)")
-                if bundleID == "org.gnu.Emacs" {
-                    HangulMenu.shared.self_eng_mode = true
-                    PrintLog.shared.Log(log: "Forced English mode for: \(bundleID)")
-                } else {
-                    HangulMenu.shared.self_eng_mode = false
-                }
-            }
-        }
-    }
+      super.activateServer(sender)
     
+      PrintLog.shared.Log(log: "Server Activated")
+      self.hangul = Hangul()
+      self.hangul.Start(type: HangulMenu.shared.selected_keyboard)
+    
+      // Emacs 영문 고정 옵션이 켜져 있을 때만 적용
+      if OptHandler.shared.emacs_eng_mode {
+         if let client = sender as? IMKTextInput,
+            let bundleID = client.bundleIdentifier() {
+             PrintLog.shared.Log(log: "App activated: \(bundleID)")
+             let engModeApps = ["org.gnu.Emacs", "com.runningwithcrayons.Alfred"]
+             if engModeApps.contains(bundleID) {
+                 HangulMenu.shared.self_eng_mode = true
+                 PrintLog.shared.Log(log: "Forced English mode for: \(bundleID)")
+             } else {
+                 HangulMenu.shared.self_eng_mode = false
+             }
+           }
+         }
+      }
+
+
     override open func deactivateServer(_ sender: Any!) {
         super.deactivateServer(sender)
         
