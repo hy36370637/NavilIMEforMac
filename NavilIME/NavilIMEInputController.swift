@@ -175,7 +175,7 @@ open class NavilIMEInputController: IMKInputController {
         
         let ascii_idx = self.key_code.index(self.key_code.startIndex, offsetBy: Int(keycode))
         var ascii = self.key_code[ascii_idx]
-        let shift:Bool = flag.contains(.shift) || flag.contains(.capsLock)
+        let shift:Bool = flag.contains(.shift)
         if shift == true {
             ascii = self.shift_key_code[ascii_idx]
         }
