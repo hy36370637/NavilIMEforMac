@@ -14,17 +14,45 @@ class HanjaController {
     private var isPreeditMode: Bool = false
     private var currentPage: Int = 0
 
+    // 3분 후 메모리 해제 타이머
+    private var releaseTimer: Timer?
+    private let releaseDelay: TimeInterval = 180
+
     private init() {}
 
     var isReady: Bool = false
 
     func setup(server: IMKServer) {
-        guard !isReady else { return }
+        if isReady {
+            // 이미 초기화됨 - 타이머만 리셋
+            resetReleaseTimer()
+            return
+        }
         self.candidates = IMKCandidates(server: server,
                                         panelType: kIMKSingleColumnScrollingCandidatePanel)
         self.candidates?.setDismissesAutomatically(true)
         isReady = true
+        resetReleaseTimer()
         PrintLog.shared.Log(log: "HanjaController: setup done (lazy)")
+    }
+
+    private func resetReleaseTimer() {
+        releaseTimer?.invalidate()
+        releaseTimer = Timer.scheduledTimer(withTimeInterval: releaseDelay, repeats: false) { [weak self] _ in
+            self?.releaseFromMemory()
+        }
+        PrintLog.shared.Log(log: "HanjaController: release timer reset (3min)")
+    }
+
+    private func releaseFromMemory() {
+        candidates?.hide()
+        candidates = nil
+        currentCandidates = []
+        isPreeditMode = false
+        currentPage = 0
+        isReady = false
+        releaseTimer = nil
+        PrintLog.shared.Log(log: "HanjaController: released from memory after 3min")
     }
 
     func hide() {
