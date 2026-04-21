@@ -20,6 +20,9 @@
 		CF6561FF28D1AE6F0085AC8D /* Testcases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6561FE28D1AE6F0085AC8D /* Testcases.swift */; };
 		CF714A5B28E6C273000CBDEE /* SingletonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF714A5A28E6C273000CBDEE /* SingletonMenu.swift */; };
 		CF8F931D2D718F5300955352 /* navilime.png in Resources */ = {isa = PBXBuildFile; fileRef = CF8F931C2D718F5300955352 /* navilime.png */; };
+		E8B256C42F8C6CEF0032A258 /* HanjaTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B256C32F8C6CEF0032A258 /* HanjaTable.swift */; };
+		E8B256C52F8C6CEF0032A258 /* HanjaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B256C22F8C6CEF0032A258 /* HanjaController.swift */; };
+		E8C966642F95B93C00DB07A6 /* hanja.json in Resources */ = {isa = PBXBuildFile; fileRef = E8C966632F95B93C00DB07A6 /* hanja.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,9 @@
 		CF6561FE28D1AE6F0085AC8D /* Testcases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Testcases.swift; sourceTree = "<group>"; };
 		CF714A5A28E6C273000CBDEE /* SingletonMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonMenu.swift; sourceTree = "<group>"; };
 		CF8F931C2D718F5300955352 /* navilime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navilime.png; sourceTree = "<group>"; };
+		E8B256C22F8C6CEF0032A258 /* HanjaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HanjaController.swift; sourceTree = "<group>"; };
+		E8B256C32F8C6CEF0032A258 /* HanjaTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HanjaTable.swift; sourceTree = "<group>"; };
+		E8C966632F95B93C00DB07A6 /* hanja.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hanja.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,9 @@
 		CF39BCA028C42D7200CB35AE /* NavilIME */ = {
 			isa = PBXGroup;
 			children = (
+				E8C966632F95B93C00DB07A6 /* hanja.json */,
+				E8B256C22F8C6CEF0032A258 /* HanjaController.swift */,
+				E8B256C32F8C6CEF0032A258 /* HanjaTable.swift */,
 				CF6561F728D1AE010085AC8D /* Automata */,
 				CF39BCB028C49D3800CB35AE /* Info.plist */,
 				CF39BCA128C42D7200CB35AE /* AppDelegate.swift */,
@@ -156,6 +165,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8C966642F95B93C00DB07A6 /* hanja.json in Resources */,
 				CF8F931D2D718F5300955352 /* navilime.png in Resources */,
 				CF39BCA428C42D7300CB35AE /* Assets.xcassets in Resources */,
 				CF39BCA728C42D7300CB35AE /* MainMenu.xib in Resources */,
@@ -170,6 +180,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF40CD3028EFF6CC000CCB7B /* Keyboard002.swift in Sources */,
+				E8B256C42F8C6CEF0032A258 /* HanjaTable.swift in Sources */,
+				E8B256C52F8C6CEF0032A258 /* HanjaController.swift in Sources */,
 				CF6561FD28D1AE590085AC8D /* Keyboards.swift in Sources */,
 				CF39BCA228C42D7200CB35AE /* AppDelegate.swift in Sources */,
 				CF6561FF28D1AE6F0085AC8D /* Testcases.swift in Sources */,

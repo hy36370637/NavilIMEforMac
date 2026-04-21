@@ -168,6 +168,8 @@ class Hangul {
     func set_preedit(comp:Composition){
         if let kbd = self.keyboard {
             self.preediting += kbd.normalization(comp: comp, is_commit: false)
+            // 최신 preedit 문자열 저장 (GetPreedit 후에도 유지)
+            currentPreedit = String(utf16CodeUnits: self.preediting, count: self.preediting.count)
             let dbg = kbd.debugout(comp: comp)
             if dbg != "" {
                 self.debug_preedit.append(dbg)
@@ -268,18 +270,37 @@ class Hangul {
         self.set_commit(comp: comp)
         // 입력 버퍼를 비우면 flush!
         self.automata!.current = []
+        currentPreedit = ""
     }
+
+    var lastCommitted: String = ""
+    var currentPreedit: String = ""  // 최신 preedit 문자열 (GetPreedit 후에도 유지)
 
     func GetPreedit() -> [unichar] {
         let ret:[unichar] = self.preediting
+        currentPreedit = String(utf16CodeUnits: ret, count: ret.count)
         self.preediting = []
         return ret
     }
 
+    // preedit 버퍼를 비우지 않고 현재 값만 반환
+    func PeekPreedit() -> [unichar] {
+        return self.preediting
+    }
+
     func GetCommit() -> [unichar] {
         let ret:[unichar] = self.committed
+        lastCommitted = String(utf16CodeUnits: ret, count: ret.count)
         self.committed = []
         return ret
+    }
+
+    // 한자 선택 후 상태 초기화
+    func clearState() {
+        self.automata?.current = []
+        self.preediting = []
+        self.committed = []
+        self.currentPreedit = ""
     }
     
     func GetDebug(t:String) -> [String] {

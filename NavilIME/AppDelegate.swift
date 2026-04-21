@@ -33,8 +33,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         server = IMKServer(name: Bundle.main.infoDictionary?["InputMethodConnectionName"] as? String, bundleIdentifier: Bundle.main.bundleIdentifier)
         NSLog("tried connection")
+
+        // 한자/기호 변환 컨트롤러 초기화
+        HanjaController.shared.setup(server: server)
         
-        // 디버깅 할 때는 로그를 봐야 하므로 아래 주석을 순서대로 사용한다.
+        // 디버깅 할 때는 로그를 봐야 하므로 아래 주석을 순서대로 사용한다.
         //PrintLog.shared.scrollView = self.scrollView      // Debuging mode ON
         PrintLog.shared.scrollView = nil                    // Debuging mode OFF
         
@@ -77,10 +80,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func opt_emacs_eng(_ sender: NSButton) {
         OptHandler.shared.Emacs_eng_mode(enabled: sender.state == .on)
     }
+
     @IBAction func opt_set_hotkey(_ sender: NSButton) {
         let radio_tag = sender.tag
         PrintLog.shared.Log(log: "Han Eng radio Tag = \(radio_tag) ")
         OptHandler.shared.HanEng_hotkey(sel: radio_tag)
     }
 }
-

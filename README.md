@@ -3,7 +3,7 @@
 ## About
 - Tested on emacs-plus 30.2, macOS 15.7.4
 - Prefers continuous 2-beolsik input, similar to Emacs built-in Korean input method
-- Lightweight — no Hanja or special character input features
+- Supports Hanja and special character conversion via F9 key
 
 ## The Inevitable Struggle of Korean Keyboard Users
 - Primarily using MacBook with Emacs/org-mode
@@ -12,7 +12,12 @@
 ## Patches
 - **For Emacs**: Automatically switches to macOS English keyboard when Emacs gains focus
 - **ㅆ jongseong fix**: Added `"tt":Jongsung.Ssangsios` — one line fix in `Keyboard002.swift`
+- **Hanja & symbol conversion (F9)**: Press F9 while composing a Korean syllable to open a candidate popup. Select with mouse double-click or arrow keys + Enter. Press F9 again or ESC to dismiss. Powered by a JSON table ported from Emacs `hanja-util.el` (572 entries, covering both Hanja and special symbols)
 - **Lightweight build**: ARM64 only, 2-beolsik only
+
+## Hanja Conversion — Supported Apps
+- Emacs, Upnote, Safari, Chrome, TextEdit and most standard macOS apps
+- iTerm2: limited support due to terminal IME constraints
 
 ## With the Help of AI
 - I am not a developer
