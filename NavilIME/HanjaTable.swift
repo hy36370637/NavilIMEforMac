@@ -2,6 +2,7 @@
 //  HanjaTable.swift
 //  NavilIME
 //
+//  Created by HY on 21/4/26
 //  hanja.json 을 런타임에 로드하여 한자/기호 후보 목록을 제공
 //
 

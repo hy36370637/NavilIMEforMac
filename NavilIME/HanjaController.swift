@@ -11,7 +11,6 @@ class HanjaController {
 
     private var candidates: IMKCandidates?
     private var currentCandidates: [HanjaCandidate] = []
-    private weak var client: IMKTextInput?
     private var isPreeditMode: Bool = false
     private var currentPage: Int = 0
 
@@ -47,19 +46,7 @@ class HanjaController {
         candidates?.interpretKeyEvents([event])
     }
 
-    func pageOffset() -> Int { return currentPage * 10 }
-
-    func nextPage() {
-        let maxPage = (currentCandidates.count - 1) / 10
-        if currentPage < maxPage { currentPage += 1 }
-    }
-
-    func prevPage() {
-        if currentPage > 0 { currentPage -= 1 }
-    }
-
     func handleScalar(scalar: Unicode.Scalar, preeditMode: Bool, client: IMKTextInput) -> Bool {
-        self.client = client
         self.isPreeditMode = preeditMode
         self.currentPage = 0
         PrintLog.shared.Log(log: "HanjaController: handleScalar U+\(String(format: "%04X", scalar.value)) preeditMode=\(preeditMode)")

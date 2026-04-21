@@ -3,7 +3,7 @@
 //  NavilIME
 //
 //  Created by Manwoo Yi on 9/3/22.
-//
+//  Modified by HY on 21/4/26
 
 import Cocoa
 import InputMethodKit

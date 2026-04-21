@@ -51,16 +51,9 @@ open class NavilIMEInputController: IMKInputController {
             return true
         }
 
-        // 한자 팝업이 표시 중일 때 키 이벤트 처리
         if HanjaController.shared.isVisible {
             switch event.keyCode {
-            case 0x7B, 0x7C: // 좌우 화살표
-                HanjaController.shared.handleKey(event: event)
-                return true
-            case 0x7D: // 아래 화살표
-                HanjaController.shared.handleKey(event: event)
-                return true
-            case 0x7E: // 위 화살표
+            case 0x7B, 0x7C, 0x7D, 0x7E: // 화살표키
                 HanjaController.shared.handleKey(event: event)
                 return true
             case 0x24, 0x4C: // Enter, Return
@@ -70,7 +63,6 @@ open class NavilIMEInputController: IMKInputController {
                 HanjaController.shared.hide()
                 return true
             default:
-                // 다른 키 → 팝업 닫기
                 HanjaController.shared.hide()
                 return true
             }
@@ -135,9 +127,8 @@ open class NavilIMEInputController: IMKInputController {
             return remain
         }
 
-        // F9 → 한자/기호 변환 또는 팝업 닫기 (토글)
+        // F9 → 한자/기호 변환 (토글)
         if event.keyCode == 0x65 {
-            // 팝업이 떠있으면 닫기
             if HanjaController.shared.isVisible {
                 HanjaController.shared.hide()
                 return true
@@ -267,15 +258,13 @@ open class NavilIMEInputController: IMKInputController {
         HanjaController.shared.select(candidate: candidateString.string, client: client)
     }
 
-    override open func candidateSelectionChanged(_ candidateString: NSAttributedString!) {
-    }
+    override open func candidateSelectionChanged(_ candidateString: NSAttributedString!) {}
 
     @objc func select_menu(_ sender:Any?) {
         guard let menuitem = sender as? Dictionary<String, Any> else {
             PrintLog.shared.Log(log: "WTF \(sender.debugDescription)")
             return
         }
-        
         if let kbd:NSMenuItem = menuitem["IMKCommandMenuItem"] as? NSMenuItem {
             PrintLog.shared.Log(log: "Selected Keyboard: \(kbd.title)")
             if kbd.tag == OptHandler.shared.opt_menu_tag {
