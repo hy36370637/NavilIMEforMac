@@ -16,11 +16,15 @@ class HanjaController {
 
     private init() {}
 
+    var isReady: Bool = false
+
     func setup(server: IMKServer) {
+        guard !isReady else { return }
         self.candidates = IMKCandidates(server: server,
                                         panelType: kIMKSingleColumnScrollingCandidatePanel)
         self.candidates?.setDismissesAutomatically(true)
-        PrintLog.shared.Log(log: "HanjaController: setup done")
+        isReady = true
+        PrintLog.shared.Log(log: "HanjaController: setup done (lazy)")
     }
 
     func hide() {

@@ -34,8 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         server = IMKServer(name: Bundle.main.infoDictionary?["InputMethodConnectionName"] as? String, bundleIdentifier: Bundle.main.bundleIdentifier)
         NSLog("tried connection")
 
-        // 한자/기호 변환 컨트롤러 초기화
-        HanjaController.shared.setup(server: server)
+
         
         // 디버깅 할 때는 로그를 봐야 하므로 아래 주석을 순서대로 사용한다.
         //PrintLog.shared.scrollView = self.scrollView      // Debuging mode ON

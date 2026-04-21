@@ -14,7 +14,17 @@ class HangulMenu {
     var selected_keyboard:Int
     var menu:NSMenu
     
-    var self_eng_mode:Bool = false
+    var self_eng_mode:Bool = false {
+        didSet {
+            update_status_menuitem()
+        }
+    }
+    
+    let status_menuitem = NSMenuItem()
+    
+    func update_status_menuitem() {
+        status_menuitem.title = self_eng_mode ? "🔤 EN" : "🇰🇷 KO"
+    }
     
     let user_default_key = "keyboard"
     
@@ -33,6 +43,12 @@ class HangulMenu {
         }
         
         self.menu = NSMenu()
+        
+        // 상태 표시 아이템
+        status_menuitem.title = "🇰🇷 KO"
+        status_menuitem.isEnabled = false
+        self.menu.addItem(status_menuitem)
+        self.menu.addItem(NSMenuItem.separator())
         
         for keyboard_inst in Hangul.hangul_keyboard {
             let keyboard_menuitem = NSMenuItem()

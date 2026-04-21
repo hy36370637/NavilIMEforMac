@@ -129,6 +129,11 @@ open class NavilIMEInputController: IMKInputController {
 
         // F9 → 한자/기호 변환 (토글)
         if event.keyCode == 0x65 {
+            // Lazy 초기화 - 처음 F9 누를 때만 setup
+            if !HanjaController.shared.isReady,
+               let delegate = NSApp.delegate as? AppDelegate {
+                HanjaController.shared.setup(server: delegate.server)
+            }
             if HanjaController.shared.isVisible {
                 HanjaController.shared.hide()
                 return true
