@@ -10,11 +10,12 @@
 - The painful keyboard switching problem between macOS and Emacs is a familiar struggle for Korean users
 
 ## Patches
-- **For Emacs**: Automatically switches to macOS English keyboard when Emacs gains focus (configurable via Options checkbox)
 - **ㅆ jongseong fix**: Added `"tt":Jongsung.Ssangsios` — one line fix in `Keyboard002.swift`
 - **ㄲ jongseong**: Added `"rr":Jongsung.Ssangkiyeok` for double-tap input
 - **Hanja & symbol conversion (F9)**: Press F9 while composing a Korean syllable to open a candidate popup. Select with mouse double-click or arrow keys + Enter. Press F9 again or ESC to dismiss. Powered by a JSON table ported from Emacs `hanja-util.el` (572 entries, covering both Hanja and special symbols). **Lazy loaded** — initialized only on first F9 press, keeping startup lightweight
 - **KO/EN status display**: Menu bar dropdown shows 🇰🇷 KO or 🔤 EN to indicate current input mode
+- **Emacs multi-key sequence fix**: Modifier key sequences like `C-x p p`, `C-c C-x f` no longer trigger Korean input. Implemented via `commandKeyCount` tracking using `flagsChanged` events — inspired by `(> (length (this-command-keys)) 1)` in Emacs input method API
+- **Crash defense**: Added `ensureHangulReady()` to handle cases where macOS calls `handle()` without prior `activateServer()`
 - **Lightweight build**: ARM64 only, 2-beolsik only, 3-beolsik layouts removed
 
 ## Hanja Conversion — Supported Apps
@@ -22,13 +23,16 @@
 - iTerm2: limited support due to terminal IME constraints
 
 ## Options
-- **Force English mode for Emacs**: When enabled, automatically switches to English mode when Emacs gains focus. Useful when using Emacs built-in `hangul.el` for Korean input
 - **Han/Eng toggle key**: Choose from Shift+Space, Right Command, or Right Option
+
+## Known Limitations
+- After a multi-key sequence (e.g. `C-x p p`), Korean input mode must be manually restored via the Han/Eng toggle key
+- When in Korean composition state, the first modifier key press (e.g. `C-x`) confirms the current syllable; the shortcut requires a second press to execute
 
 ## With the Help of AI
 - I am not a developer
 - Started this to solve the keyboard switching inconvenience that Korean layout users face
-- Fortunately, living in a good era — solved with the help of AI
+- Fortunately, living in a good era — solved with the help of AI (Claude)
 
 ## Build
 Swift version 5 is required (Swift 6 causes build errors)
